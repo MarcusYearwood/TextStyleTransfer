@@ -1,7 +1,11 @@
 import csv
 import openai
 
-openai.api_key = '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'
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+openai.api_key = os.getenv("API_KEY")
 
 with open('paragraphs.csv', 'r') as file:
     reader = csv.reader(file)
