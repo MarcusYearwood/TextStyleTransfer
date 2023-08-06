@@ -16,13 +16,13 @@ with open('trans_paragraphs.csv', 'w') as outfile:
     
     writer.writerow(['Paragraphs', 'Translation - Simple'])
     
-    for paragraph in paragraphs[1:2]:
+    for paragraph in paragraphs[1:3]:
         original = paragraph[0]
 
         prompt = f"Please rephrase this paragraph in simpler terms: {original}"
 
         response = openai.Completion.create(
-            engine="davinci",
+            engine="gpt-3.5-turbo",
             prompt=prompt,
         )
 
