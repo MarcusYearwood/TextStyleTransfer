@@ -6,7 +6,7 @@ import os
 import csv
 import re
 
-input_folders = ['./data/papers', './data/paragraphs']
+input_folders = ['./raw_data/papers', './raw_data/paragraphs']
 output_file = 'sentences.csv'
 
 with open(output_file, 'w', newline='') as csvfile:
@@ -42,13 +42,12 @@ with open(output_file, 'w', newline='') as csvfile:
                 file_path = os.path.join(folder, filename)
 
                 with open(file_path, 'r') as f:
-                    text = f.read()
-                    paragraphs = re.split(r'\n{2,}', text)
+                    lines = f.readlines()
 
-                    for paragraph in paragraphs:
+                    for line in lines:
+                        paragraph = line.strip()
                         paragraph = re.sub(r'\([^)]*\)', '', paragraph)
-                        if paragraph:
-                            csvwriter.writerow([paragraph])
+                        csvwriter.writerow([paragraph])
 
 print('Extracted paragraphs saved to:', output_file)
 
